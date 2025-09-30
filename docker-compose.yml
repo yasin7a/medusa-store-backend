@@ -32,11 +32,8 @@ services:
       - redis
     environment:
       NODE_ENV: production
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-store
-      REDIS_URL: redis://redis:6379
       MEDUSA_WORKER_MODE: server
       DISABLE_MEDUSA_ADMIN: "false"
-      # ...other production env vars
     ports:
       - "9000:9000"
     networks:
@@ -51,11 +48,8 @@ services:
       - redis
     environment:
       NODE_ENV: production
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-store
-      REDIS_URL: redis://redis:6379
       MEDUSA_WORKER_MODE: worker
       DISABLE_MEDUSA_ADMIN: "true"
-      # ...other production env vars
     networks:
       - medusa_network
 
