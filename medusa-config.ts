@@ -7,10 +7,10 @@ module.exports = defineConfig({
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
   },
   projectConfig: {
-    // cookieOptions: {
-    //   sameSite: "lax",
-    //   secure: false,
-    // },
+    cookieOptions: {
+      sameSite: "lax",
+      secure: false,
+    },
     redisUrl: process.env.REDIS_URL,
     databaseName: process.env.DATABASE_NAME,
     databaseUrl: process.env.DATABASE_URL,
