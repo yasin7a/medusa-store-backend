@@ -27,10 +27,8 @@ COPY ./.env ./.medusa/server/.env.production
 
 WORKDIR /app/.medusa/server
 
-# Expose Medusa default port
 EXPOSE 9000
 
-# Set NODE_ENV to production
 ENV NODE_ENV=production
 
 # Run migrations and start Medusa
