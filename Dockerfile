@@ -22,7 +22,8 @@ WORKDIR /app
 
 # Copy the built server from the builder
 COPY --from=builder /app/.medusa/server ./.medusa/server
-COPY --from=builder /app/medusa-config.js ./medusa-config.js
+COPY ./.env ./.medusa/server/.env.production
+
 
 WORKDIR /app/.medusa/server
 
@@ -33,4 +34,4 @@ EXPOSE 9000
 ENV NODE_ENV=production
 
 # Run migrations and start Medusa
-CMD ["sh", "-c", "npx medusa migrations run && npm run start"]
+CMD ["sh", "-c", "npx medusa db:migrate && npm run start"]
