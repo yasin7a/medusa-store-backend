@@ -26,7 +26,7 @@ services:
       - medusa_network
 
   medusa_server:
-    build: .
+    image: softvalley/softvalley-hub:medusa-store-backend
     container_name: medusa_server
     restart: unless-stopped
     depends_on:
@@ -45,7 +45,7 @@ services:
       - medusa_network
 
   medusa_worker:
-    build: .
+    image: softvalley/softvalley-hub:medusa-store-backend
     container_name: medusa_worker
     restart: unless-stopped
     depends_on:
@@ -63,8 +63,7 @@ services:
 
 volumes:
   postgres_data:
-      external: true
-      
+    external: true
 
 networks:
   medusa_network:
