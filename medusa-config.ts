@@ -5,7 +5,7 @@ loadEnv(process.env.NODE_ENV || "development", process.cwd());
 module.exports = defineConfig({
   admin: {
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
-    backendUrl: process.env.MEDUSA_BACKEND_URL,
+    // backendUrl: process.env.MEDUSA_BACKEND_URL,
   },
   modules: [
     {
@@ -16,7 +16,7 @@ module.exports = defineConfig({
             resolve: "@medusajs/medusa/file-local",
             id: "local",
             options: {
-              url: process.env.MEDUSA_BACKEND_URL,
+              // url: process.env.MEDUSA_BACKEND_URL,
             },
           },
         ],
@@ -28,7 +28,7 @@ module.exports = defineConfig({
      sameSite:"lax",
      secure:false
     },
-    redisUrl: process.env.REDIS_URL,
+    // redisUrl: process.env.REDIS_URL,
     databaseName: process.env.DATABASE_NAME,
     databaseUrl: process.env.DATABASE_URL,
     http: {
