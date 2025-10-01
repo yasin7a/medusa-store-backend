@@ -25,7 +25,8 @@ module.exports = defineConfig({
   ],
   projectConfig: {
     cookieOptions: {
-      domain: "admin.macrovalleyprojects.xyz",
+     sameSite:"lax",
+     secure:false
     },
     redisUrl: process.env.REDIS_URL,
     databaseName: process.env.DATABASE_NAME,
