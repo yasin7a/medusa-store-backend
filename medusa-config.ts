@@ -7,11 +7,25 @@ module.exports = defineConfig({
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
     backendUrl: process.env.MEDUSA_BACKEND_URL,
   },
-
+  modules: [
+    {
+      resolve: "@medusajs/medusa/file",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/file-local",
+            id: "local",
+            options: {
+              url: process.env.MEDUSA_BACKEND_URL,
+            },
+          },
+        ],
+      },
+    },
+  ],
   projectConfig: {
     cookieOptions: {
-      sameSite: "lax",
-      secure: false,
+      domain: "admin.macrovalleyprojects.xyz",
     },
     redisUrl: process.env.REDIS_URL,
     databaseName: process.env.DATABASE_NAME,
