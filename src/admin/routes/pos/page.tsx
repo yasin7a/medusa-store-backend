@@ -6,8 +6,26 @@ import { useEffect, useState } from "react";
 function IconComponent() {
   return <Receipt color="#FDB813" />;
 }
+function useTabFocus() {
+  const [isTabFocused, setIsTabFocused] = useState(document.hasFocus());
 
+  useEffect(() => {
+    const handleFocus = () => setIsTabFocused(true);
+    const handleBlur = () => setIsTabFocused(false);
+
+    window.addEventListener("focus", handleFocus);
+    window.addEventListener("blur", handleBlur);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("blur", handleBlur);
+    };
+  }, []);
+
+  return isTabFocused;
+}
 function BarcodeScanner() {
+  const isTabFocused = useTabFocus();
   const [barcode, setBarcode] = useState("");
 
   useEffect(() => {
@@ -34,9 +52,21 @@ function BarcodeScanner() {
     return () => window.removeEventListener("keypress", handleKeyPress);
   }, []);
 
+  useEffect(() => {
+    if (barcode) {
+      const timer = setTimeout(() => {
+        setBarcode("");
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [barcode]);
+
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-2">Scan Barcode</h1>
+      <h1 className="text-xl font-bold mb-2">
+        Scan Barcode {isTabFocused ? "Ready to Scan" : "Not Ready"}
+      </h1>
       <p>
         Latest Scanned Code: <span className="font-mono">{barcode}</span>
       </p>
