@@ -9,6 +9,10 @@ module.exports = defineConfig({
   },
 
   projectConfig: {
+    cookieOptions: {
+      sameSite: "lax",
+      secure: false,
+    },
     redisUrl: process.env.REDIS_URL,
     databaseName: process.env.DATABASE_NAME,
     databaseUrl: process.env.DATABASE_URL,
