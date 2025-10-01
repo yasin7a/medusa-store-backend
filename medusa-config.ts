@@ -5,12 +5,13 @@ loadEnv(process.env.NODE_ENV || "development", process.cwd());
 module.exports = defineConfig({
   admin: {
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true" || false,
+    backendUrl:
+      process.env.NODE_ENV === "production"
+        ? process.env.MEDUSA_BACKEND_URL
+        : "http://localhost:9000",
   },
+
   projectConfig: {
-    cookieOptions: {
-      sameSite: "lax",
-      secure: false,
-    },
     redisUrl: process.env.REDIS_URL,
     databaseName: process.env.DATABASE_NAME,
     databaseUrl: process.env.DATABASE_URL,
